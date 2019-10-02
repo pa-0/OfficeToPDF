@@ -113,6 +113,7 @@
     <Reference Include="Ghostscript.NET, Version=1.2.1.0, Culture=neutral, PublicKeyToken=f85051de34525b59, processorArchitecture=MSIL">
       <HintPath>..\packages\Ghostscript.NET.1.2.1\lib\net40\Ghostscript.NET.dll</HintPath>
     </Reference>
+	<!-- below I fixed the build errors of cannot finding the dlls, I downloaded from dllme website, and I deleted the original dll of "MSHTML.dll" it's weired that we cannot find this dll in nuget, and original author used a absolute path to include them, really a bad way....  -->
     <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -122,6 +123,7 @@
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+	<!-- below I fixed the build errors of cannot finding the dlls, I downloaded from dllme website, it's weired that we cannot find this dll in nuget, and original author used a absolute path to include them, really a bad way....  -->
     <Reference Include="Microsoft.Office.Interop.MSProject">
       <HintPath>..\DownloadedDllsFromDllMe\Microsoft.Office.Interop.MSProject\Microsoft.Office.Interop.MSProject.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -141,6 +143,7 @@
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+	<!-- below I fixed the build errors of cannot finding the dlls, I downloaded from dllme website, it's weired that we cannot find this dll in nuget, and original author used a absolute path to include them, really a bad way....  -->
     <Reference Include="Microsoft.Office.Interop.Visio">
       <HintPath>..\DownloadedDllsFromDllMe\Microsoft.Office.Interop.Visio\Microsoft.Office.Interop.Visio.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
