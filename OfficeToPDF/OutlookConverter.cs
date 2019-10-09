@@ -37,6 +37,9 @@ namespace OfficeToPDF
         public static new int Convert(String inputFile, String outputFile, Hashtable options)
         {
             Boolean running = (Boolean)options["noquit"];
+            // [wenze] we set running to be true at start, since if it is running, we should not close the original outlook instance.
+            // Boolean running = true;
+
             Microsoft.Office.Interop.Outlook.Application app = null;
             String tmpDocFile = null;
             try
@@ -50,6 +53,8 @@ namespace OfficeToPDF
                     app = new Microsoft.Office.Interop.Outlook.Application();
                     running = false;
                 }
+
+
                 if (app == null)
                 {
                     Console.WriteLine("Unable to start outlook instance");
