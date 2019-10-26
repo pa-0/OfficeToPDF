@@ -35,9 +35,9 @@ foreach($curfile in $newChildFiles){
 		{
 			#usually it is caused by the long file name.
 			$length = $curfile.BaseName.Length
-			$newfileName = "$($curfile.BaseName.substring(0, 20))---$($curfile.BaseName.substring($length-20)).pdf"
+			$newfileName = "$($curfile.BaseName.substring(0, 50))---$($curfile.BaseName.substring($length-50)).pdf"
 			Rename-Item $curfile -NewName $newfileName
-			Move-Item $curfile -Destination  "$SeafileRootPath\2019\$MM"
+			Move-Item $newfileName -Destination  "$SeafileRootPath\2019\$MM"
 		}
 		Write-Host("moved $curfile to $SeafileRootPath\2019\$MM)")
 	}
