@@ -1,7 +1,7 @@
 
 # Script of ConvertPdfAndPutIntoSeafile.ps1
 
-## this script can batch convert the outlook emails (.msg) into PDF and put into a specific folder. 
+## this script ConvertPdfAndPutIntoSeafile.ps1 can batch convert the outlook emails (.msg) into PDF and put into a specific folder. 
 
 # OfficeToPDF
 
