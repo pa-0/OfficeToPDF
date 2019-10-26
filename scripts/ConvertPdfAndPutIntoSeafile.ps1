@@ -9,27 +9,36 @@ $MMdd = Get-Date -Format 'MMdd'
 $MM = Get-Date -Format 'MM'
 write-host "the arg is $($args[0]) and the current date is $MMdd, and will put into the month of $MM"
 
-
-$childFiles = Get-ChildItem "C:\Users\wenzzha\Documents\OutlookEmailsTemp" 
+$RootPath = "D:\OutlookEmailsTemp"
+$SeafileRootPath = "D:\Seafile\Seafile\myfiles"
+$childFiles = Get-ChildItem $RootPath
 
 foreach($file in $childFiles){
 	if($file -is [System.IO.FileInfo] -and $file.Extension.Contains(".msg"))
 	{
 		Write-Host("processing $file to pdf")
-		C:\Users\wenzzha\Documents\OutlookEmailsTemp\OfficeToPDF.exe $file  "$MMdd $($file.BaseName).pdf"
+		& $RootPath"\OfficeToPDF.exe" $file  "$MMdd $($file.BaseName).pdf"
 			Write-Host("converted $file to pdf")
 	}
 }
 
-
-$newChildFiles = Get-ChildItem "C:\Users\wenzzha\Documents\OutlookEmailsTemp" 
+$newChildFiles = Get-ChildItem $RootPath
 foreach($curfile in $newChildFiles){
 	if($curfile -is [System.IO.FileInfo] -and $curfile.Extension.Contains(".msg")){
 		Remove-Item $curfile -Force
 		Write-Host("removed $curfile")
 	}
 	elseif($curfile -is [System.IO.FileInfo] -and $curfile.Extension.Contains(".pdf")){
-		Move-Item $curfile -Destination "C:\Users\wenzzha\Seafiles\Seafile\myfiles\2019\$MM"
-		Write-Host("moved $curfile to C:\Users\wenzzha\Seafiles\Seafile\myfiles\2019\$MM")
+		Try{
+			Move-Item $curfile -Destination "$SeafileRootPath\2019\$MM" -ErrorAction Continue
+		}Catch
+		{
+			#usually it is caused by the long file name.
+			$length = $curfile.BaseName.Length
+			$newfileName = "$($curfile.BaseName.substring(0, 20))---$($curfile.BaseName.substring($length-20)).pdf"
+			Rename-Item $curfile -NewName $newfileName
+			Move-Item $curfile -Destination  "$SeafileRootPath\2019\$MM"
+		}
+		Write-Host("moved $curfile to $SeafileRootPath\2019\$MM)")
 	}
 }
