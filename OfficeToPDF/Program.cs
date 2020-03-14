@@ -79,6 +79,10 @@ namespace OfficeToPDF
             Hashtable options = new Hashtable();
             List<PDFBookmark> documentBookmarks = new List<PDFBookmark>();
 
+            // this is to decide what type of orientation we want when convering (outlook msg .msg)to PDF
+            // previously it is portrait by default, now it is not, now we do it as landscape by default!
+            options["pdfOrientationAsLandscape"] = true;
+
             // Loop through the input, grabbing switches off the command line
             options["hidden"] = false;
             options["markup"] = false;
@@ -90,6 +94,9 @@ namespace OfficeToPDF
             options["verbose"] = false;
             options["excludeprops"] = false;
             options["excludetags"] = false;
+
+            // this is to make the outlook not quick while converting process. 
+            // before was false, so always shut down. 
             options["noquit"] = true;
             options["merge"] = false;
             options["template"] = "";
