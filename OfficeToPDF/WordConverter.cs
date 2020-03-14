@@ -416,6 +416,11 @@ namespace OfficeToPDF
                     // No printer given, so export
                     try
                     {
+                        if((bool)options["pdfOrientationAsLandscape"] == true)
+                        {
+                            doc.PageSetup.Orientation = WdOrientation.wdOrientLandscape;
+                        }
+
                         doc.ExportAsFixedFormat(outputFile, WdExportFormat.wdExportFormatPDF, false,
                         quality, WdExportRange.wdExportAllDocument,
                         1, 1, showMarkup, includeProps, true, bookmarks, includeTags, bitmapMissingFonts, pdfa);
